@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond the Law</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Public+Sans:wght@400;500;700&display=swap">
+<style>
+:root{--red:#b3121b;--deep:#7d0b12;--yel:#ffc928;--pale:#fff4c2;--bg:#fffdf6;--ink:#2a1210;--mute:#6b504c;--line:#ecd9a8;box-sizing:border-box}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Public Sans",Arial,sans-serif}
+h1,h2,h3,.brand,nav a,.tab,.btn,.q{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif}
+a{color:inherit}:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
+header{position:sticky;top:0;z-index:9;background:var(--red);color:#fff}
+.bar,.w{max-width:1080px;margin:0 auto;padding:0 22px}
+.bar{display:flex;flex-wrap:wrap;gap:6px 26px;align-items:center;justify-content:space-between;padding-top:12px;padding-bottom:12px}
+.brand{font-weight:800;font-size:1.2rem;text-decoration:none;color:var(--yel)}
+nav{display:flex;flex-wrap:wrap;gap:2px 20px}
+nav a{text-decoration:none;font-weight:500;padding:4px 0;border-bottom:3px solid transparent}
+nav a[aria-current="page"]{border-color:var(--yel);color:var(--yel)}
+.page{display:none}.page.on{display:block}
+.hero{background:var(--red);color:#fff;padding:64px 0 72px}
+h1{font-size:clamp(2.7rem,9vw,6rem);line-height:.98;font-weight:800;letter-spacing:-.025em;margin:0 0 22px;color:var(--yel);max-width:12ch}
+.hero p{font-size:1.2rem;max-width:52ch;margin:0 0 28px}
+.tape{height:20px;background:repeating-linear-gradient(-45deg,var(--yel) 0 18px,var(--deep) 18px 36px)}
+.btn{display:inline-block;padding:12px 22px;font-weight:700;text-decoration:none;border-radius:4px;margin:0 10px 10px 0;border:2px solid var(--yel)}
+.btn.p{background:var(--yel);color:var(--deep)}.btn.s{color:var(--yel)}
+.btn:hover{background:#fff;border-color:#fff;color:var(--red)}
+section.b{padding:56px 0}
+h2{font-size:clamp(1.7rem,4.5vw,2.6rem);line-height:1.1;font-weight:800;margin:0 0 12px;color:var(--deep)}
+h3{font-size:1.25rem;margin:0 0 8px;line-height:1.2}
+.sub{color:var(--mute);max-width:60ch;margin:0 0 30px}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.card{background:#fff;border:2px solid var(--line);border-top:8px solid var(--red);padding:22px;border-radius:4px}
+.card.y{border-top-color:var(--yel)}
+.card a.more{font-weight:700;color:var(--red);display:inline-block;margin-top:6px}
+.band{background:var(--pale);border-block:2px solid var(--line)}
+.dark{background:var(--deep);color:#fff}.dark h2{color:var(--yel)}.dark .sub{color:#f3cfc9}
+.pagehead{background:var(--red);color:#fff;padding:44px 0 40px}
+.pagehead h2{color:var(--yel);font-size:clamp(2rem,6vw,3.4rem);margin:0 0 8px}
+.pagehead p{margin:0;max-width:60ch;font-size:1.1rem}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px}
+.tab{border:2px solid var(--red);background:#fff;color:var(--red);padding:10px 18px;font-size:1rem;font-weight:700;cursor:pointer;border-radius:4px}
+.tab[aria-selected="true"]{background:var(--red);color:var(--yel)}
+.panel{display:none}.panel.on{display:block}
+.panel>p{max-width:70ch}
+.facts{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));margin-top:20px}
+.facts .card h3{color:var(--red)}.facts p{margin:0}
+.note{background:var(--pale);border-left:6px solid var(--yel);padding:14px 18px;max-width:70ch;margin-top:24px;font-size:.95rem}
+.pasal{border-left:8px solid var(--yel);background:#fff;border-radius:4px;padding:18px 22px;border-top:2px solid var(--line);border-right:2px solid var(--line);border-bottom:2px solid var(--line)}
+.pasal h3{color:var(--red)}.pasal p{margin:0}
+.sim{background:#fff;border:3px solid var(--red);border-radius:6px;padding:26px;max-width:760px}
+.q{font-size:1.35rem;font-weight:700;margin:0 0 16px;line-height:1.25}
+.opt{display:block;width:100%;text-align:left;font:inherit;background:var(--bg);border:2px solid var(--line);padding:12px 16px;margin-bottom:10px;border-radius:4px;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--red)}
+.opt.ok{background:#e4f4d9;border-color:#3c8a2a}.opt.no{background:#fde3df;border-color:var(--red)}
+.fb{margin:14px 0 0;padding:12px 16px;background:var(--pale);border-left:6px solid var(--yel);display:none}
+.fb.on{display:block}
+.prog{font-weight:700;color:var(--red);margin-bottom:10px}
+.cols{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.col{background:#fff;color:var(--ink);border-radius:4px;padding:24px;border-top:10px solid var(--yel)}
+.col h3{color:var(--red)}.col ol{margin:0;padding-left:20px}.col li{margin-bottom:10px}
+footer{background:var(--deep);color:#f3cfc9;padding:34px 0;font-size:.92rem}
+footer b{color:var(--yel)}
+.qhud{display:flex;flex-wrap:wrap;gap:6px 20px;font-weight:700;color:var(--red);margin-bottom:12px}
+.pbar{height:10px;background:var(--line);border-radius:5px;margin-bottom:20px;overflow:hidden}.pbar i{display:block;height:100%;background:var(--red)}
+.kcase{background:var(--pale);border:2px solid var(--yel);border-radius:4px;padding:16px 18px;margin-bottom:16px}
+.kcase span{font-weight:700;color:var(--red);font-size:.95rem}.kcase .q{margin:6px 0 0}
+.bdg{display:inline-block;padding:8px 14px;border-radius:30px;background:var(--yel);color:var(--deep);font-weight:700;margin:0 8px 8px 0}.bdg.off{background:#eee;color:#8a7f7d}
+.msg{font-size:1.15rem;font-weight:700;color:var(--deep);max-width:60ch}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="brand" href="#beranda">Beyond the Law</a>
+<nav aria-label="Menu utama"><a href="#beranda">Beranda</a><a href="#kasus">Kasus</a><a href="#edukasi">Edukasi hukum</a><a href="#quest">Pasal Quest</a><a href="#solusi">Solusi</a></nav>
+</div></header>
+
+<main>
+<!-- BERANDA -->
+<div class="page" id="beranda">
+<div class="hero"><div class="w">
+<h1>Asap boleh hilang, suara jangan.</h1>
+<p>Tiga kasus di Indonesia memperlihatkan bahwa hak atas lingkungan yang sehat dan hak untuk bersuara saling bergantung. Pahami masalahnya, dasar hukumnya, dan jalan keluarnya.</p>
+<a class="btn p" href="#kasus">Lihat tiga kasus</a><a class="btn s" href="#edukasi">Belajar hukumnya</a><a class="btn s" href="#quest">Main Pasal Quest</a>
+</div></div>
+<div class="tape" aria-hidden="true"></div>
+<section class="b"><div class="w">
+<h2>Tiga kasus, satu pertanyaan</h2>
+<p class="sub">Siapa yang menjaga udara kita, dan siapa yang melindungi orang yang berani menagihnya?</p>
+<div class="grid">
+<div class="card"><h3>Kebakaran hutan dan lahan</h3><p>Kabut asap mengganggu kesehatan, merusak ekosistem, dan menghentikan kegiatan sekolah serta warga.</p><a class="more" href="#kasus/karhutla">Baca kasusnya →</a></div>
+<div class="card y"><h3>Greenpeace dan kebebasan berekspresi</h3><p>Masyarakat sipil mengawasi kebijakan lingkungan, tetapi pengkritik melaporkan teror dan intimidasi.</p><a class="more" href="#kasus/greenpeace">Baca kasusnya →</a></div>
+<div class="card"><h3>Perundungan dan kritik terhadap DPR</h3><p>Di mana batas antara kritik yang dilindungi hukum dan intimidasi yang melanggar hukum?</p><a class="more" href="#kasus/dpr">Baca kasusnya →</a></div>
+</div></div></section>
+<section class="b band"><div class="w">
+<h2>Jelajahi situs ini</h2>
+<p class="sub">Lima halaman, dari memahami kasus sampai menguji pemahamanmu lewat game.</p>
+<div class="grid">
+<div class="card y"><h3>Kasus</h3><p>Permasalahan, aspek hukum, dampak, dan kesenjangan kebijakan tiap kasus.</p><a class="more" href="#kasus">Buka →</a></div>
+<div class="card y"><h3>Edukasi hukum</h3><p>Pasal-pasal kunci dalam bahasa sehari-hari, plus simulasi keputusan.</p><a class="more" href="#edukasi">Buka →</a></div>
+<div class="card y"><h3>Pasal Quest</h3><p>Game edukasi: cocokkan peristiwa dengan pasal UUD 1945, kumpulkan skor dan lencana.</p><a class="more" href="#quest">Main →</a></div>
+<div class="card y"><h3>Solusi</h3><p>Tiga belas usulan konkret untuk pemerintah, perusahaan, dan masyarakat.</p><a class="more" href="#solusi">Buka →</a></div>
+</div></div></section>
+</div>
+
+<!-- KASUS -->
+<div class="page" id="kasus">
+<div class="pagehead"><div class="w"><h2>Kasus</h2><p>Pilih salah satu dari tiga kasus untuk melihat masalah, dasar hukum, dampak, dan celah kebijakannya.</p></div></div>
+<div class="tape" aria-hidden="true"></div>
+<section class="b"><div class="w">
+<div class="tabs" role="tablist" aria-label="Pilih kasus">
+<button class="tab" role="tab" id="t-karhutla" aria-controls="p-karhutla">I. Karhutla</button>
+<button class="tab" role="tab" id="t-greenpeace" aria-controls="p-greenpeace">II. Greenpeace</button>
+<button class="tab" role="tab" id="t-dpr" aria-controls="p-dpr">III. Kritik terhadap DPR</button></div>
+
+<article class="panel" id="p-karhutla" role="tabpanel" aria-labelledby="t-karhutla">
+<h2>Kebakaran hutan dan lahan (karhutla)</h2>
+<p>Kebakaran hutan dan lahan menimbulkan kabut asap, gangguan kesehatan, kerusakan ekosistem, kerugian ekonomi, dan terganggunya kegiatan pendidikan serta kehidupan warga.</p>
+<div class="facts">
+<div class="card"><h3>Aspek hukum</h3><p>Pasal 28H ayat (1) UUD 1945 dan UU No. 32 Tahun 2009 tentang Perlindungan dan Pengelolaan Lingkungan Hidup, yang telah diubah, termasuk melalui UU No. 6 Tahun 2023.</p></div>
+<div class="card"><h3>Dampak</h3><p>Risiko gangguan pernapasan meningkat, habitat satwa rusak, kegiatan warga terganggu, dan ekonomi dirugikan.</p></div>
+<div class="card"><h3>Kesenjangan kebijakan</h3><p>Pencegahan kebakaran, pemantauan wilayah rawan, transparansi izin, dan penegakan tanggung jawab perusahaan perlu diperkuat.</p></div>
+</div></article>
+
+<article class="panel" id="p-greenpeace" role="tabpanel" aria-labelledby="t-greenpeace">
+<h2>Greenpeace dan kebebasan berekspresi</h2>
+<p>Kasus ini dibahas lewat peran organisasi masyarakat sipil dalam mengawasi kebijakan lingkungan dan menyampaikan kritik kepada pemerintah maupun perusahaan.</p>
+<p>Pada 2026, Greenpeace Indonesia bersama koalisi masyarakat sipil menyoroti dampak karhutla dan menuntut pertanggungjawaban pihak yang terkait dengan kerusakan lingkungan. Greenpeace juga melaporkan adanya teror terhadap aktivis dan kreator konten yang menyampaikan kritik pada akhir 2025.</p>
+<div class="facts">
+<div class="card"><h3>Aspek hukum</h3><p>Pasal 28G ayat (1), Pasal 28E ayat (3), serta ketentuan hukum yang melindungi partisipasi publik dalam persoalan lingkungan.</p></div>
+<div class="card"><h3>Dampak</h3><p>Ancaman atau intimidasi menimbulkan rasa takut, menghambat pengawasan publik, dan melemahkan partisipasi warga dalam pengambilan kebijakan.</p></div>
+<div class="card"><h3>Kesenjangan kebijakan</h3><p>Mekanisme pelaporan ancaman dan perlindungan pembela lingkungan perlu berjalan efektif, tanpa menjadikan kritik yang sah sebagai alasan membungkam warga.</p></div>
+</div></article>
+
+<article class="panel" id="p-dpr" role="tabpanel" aria-labelledby="t-dpr">
+<h2>Perundungan dan kritik terhadap DPR</h2>
+<p>Isu ini dapat dianalisis lewat dua hal yang berbeda: kritik terhadap DPR sebagai lembaga negara, dan perundungan atau intimidasi terhadap individu dalam konteks politik.</p>
+<p>Kritik, demonstrasi damai, satire, dan pendapat tentang kebijakan DPR adalah bagian dari partisipasi demokratis. Ancaman nyata, kekerasan, atau tindakan lain yang memenuhi unsur pelanggaran hukum perlu ditangani sesuai ketentuan yang berlaku. Amnesty International Indonesia, misalnya, menyoroti kekerasan dan penangkapan dalam demonstrasi di sejumlah kota pada Agustus 2025, serta pentingnya penanganan aksi yang diperlukan, proporsional, dan dapat dipertanggungjawabkan.</p>
+<div class="facts">
+<div class="card"><h3>Aspek hukum</h3><p>Pasal 28G ayat (1), Pasal 28E ayat (3), dan Pasal 28D ayat (1) UUD 1945.</p></div>
+<div class="card"><h3>Dampak</h3><p>Warga takut berpendapat, masyarakat terpolarisasi, informasi merugikan menyebar, dan kepercayaan pada lembaga demokrasi menurun.</p></div>
+<div class="card"><h3>Kesenjangan kebijakan</h3><p>Perlu batas jelas antara kritik yang dilindungi hukum dan tindakan yang benar-benar memenuhi unsur perundungan, ancaman, atau pelanggaran hukum lainnya.</p></div>
+</div>
+<div class="note">Kasus ini perlu diperjelas berdasarkan peristiwa spesifik yang dimaksud. Uraian di atas bersifat umum.</div>
+</article>
+</div></section>
+</div>
+
+<!-- EDUKASI -->
+<div class="page" id="edukasi">
+<div class="pagehead"><div class="w"><h2>Edukasi hukum</h2><p>Pasal yang dipakai dalam ketiga kasus, dijelaskan dengan bahasa sehari-hari, lalu diuji lewat simulasi.</p></div></div>
+<div class="tape" aria-hidden="true"></div>
+<section class="b"><div class="w">
+<h2>Pasal-pasal kunci</h2>
+<div class="grid">
+<div class="pasal"><h3>Pasal 28H ayat (1)</h3><p>Setiap orang berhak mendapat lingkungan hidup yang baik dan sehat. Dasar untuk menuntut udara bersih saat karhutla.</p></div>
+<div class="pasal"><h3>UU No. 32 Tahun 2009</h3><p>Mengatur perlindungan dan pengelolaan lingkungan hidup serta tanggung jawab pelaku kerusakan. Telah diubah, termasuk lewat UU No. 6 Tahun 2023.</p></div>
+<div class="pasal"><h3>Pasal 66 UU PPLH</h3><p>Orang yang memperjuangkan hak atas lingkungan hidup yang baik dan sehat tidak dapat dituntut pidana maupun digugat perdata. Berlaku sesuai ruang lingkup hukumnya.</p></div>
+<div class="pasal"><h3>Pasal 28E ayat (3)</h3><p>Setiap orang bebas berserikat, berkumpul, dan mengeluarkan pendapat. Dasar bagi kritik dan demonstrasi damai.</p></div>
+<div class="pasal"><h3>Pasal 28G ayat (1)</h3><p>Setiap orang berhak atas perlindungan diri, kehormatan, martabat, dan rasa aman dari ancaman ketakutan.</p></div>
+<div class="pasal"><h3>Pasal 28D ayat (1)</h3><p>Setiap orang berhak atas kepastian hukum yang adil dan perlakuan yang sama di hadapan hukum.</p></div>
+</div>
+<div class="note">Ringkasan ini untuk edukasi dan bukan nasihat hukum. Untuk kasus nyata, rujuk teks resmi peraturan atau hubungi lembaga bantuan hukum.</div>
+</div></section>
+<section class="b band"><div class="w">
+<h2>Simulasi: apa yang kamu lakukan?</h2>
+<p class="sub">Tiga situasi, tiga keputusan. Pilih jawaban yang paling tepat.</p>
+<div class="sim" id="sim" aria-live="polite"></div>
+</div></section>
+</div>
+
+<!-- PASAL QUEST -->
+<div class="page" id="quest">
+<div class="pagehead"><div class="w"><h2>Pasal Quest: Misi Konstitusi</h2><p>Kenali Hakmu, Temukan Dasar Hukumnya. Selesaikan misi dengan mencocokkan peristiwa dengan hak konstitusional yang relevan.</p></div></div>
+<div class="tape" aria-hidden="true"></div>
+<section class="b"><div class="w">
+<p class="msg">Konstitusi bukan sekadar teks untuk dihafal, melainkan landasan untuk memahami dan melindungi hak warga.</p>
+<p class="sub">Tiga level, enam misi. Tiap jawaban benar bernilai 10 poin, dan setiap level yang kamu kuasai memberi satu lencana.</p>
+<div class="sim" id="qg" aria-live="polite"></div>
+</div></section>
+</div>
+
+<!-- SOLUSI -->
+<div class="page" id="solusi">
+<div class="pagehead"><div class="w"><h2>Solusi</h2><p>Lima usulan untuk karhutla, empat untuk melindungi pembela lingkungan, dan empat untuk kritik dan perundungan politik.</p></div></div>
+<div class="tape" aria-hidden="true"></div>
+<section class="b dark"><div class="w">
+<div class="cols">
+<div class="col"><h3>Karhutla</h3><ol>
+<li>Mewajibkan pemantauan berkala wilayah konsesi berisiko tinggi terbakar.</li>
+<li>Memublikasikan data titik panas, hasil investigasi, dan tindak lanjut penegakan hukum.</li>
+<li>Memperkuat sanksi sesuai hukum bagi pihak yang terbukti bertanggung jawab.</li>
+<li>Menyediakan layanan kesehatan dan perlindungan bagi warga terdampak asap.</li>
+<li>Memperkuat peran masyarakat adat dan warga lokal dalam pencegahan kebakaran.</li></ol></div>
+<div class="col"><h3>Greenpeace dan kebebasan berekspresi</h3><ol>
+<li>Membentuk mekanisme pelaporan intimidasi terhadap pembela lingkungan yang mudah diakses dan transparan.</li>
+<li>Memperkuat perlindungan hak atas lingkungan hidup, termasuk ketentuan antipembalasan Pasal 66 UU PPLH sesuai ruang lingkupnya.</li>
+<li>Memastikan laporan ancaman diselidiki objektif dan pelapor memperoleh perlindungan.</li>
+<li>Memperkuat keterbukaan data lingkungan dan ruang konsultasi publik.</li></ol></div>
+<div class="col"><h3>Perundungan dan kritik terhadap DPR</h3><ol>
+<li>Menyusun pedoman penanganan perundungan politik dan intimidasi digital yang tetap melindungi kritik yang sah.</li>
+<li>Menyediakan saluran pengaduan dengan perlindungan identitas pelapor jika diperlukan.</li>
+<li>Memperkuat literasi digital dan pendidikan demokrasi di sekolah dan masyarakat.</li>
+<li>Menjamin penanganan demonstrasi berdasarkan legalitas, kebutuhan, proporsionalitas, dan akuntabilitas.</li></ol></div>
+</div></div></section>
+</div>
+</main>
+<div class="tape" aria-hidden="true"></div>
+<footer><div class="w"><b>Beyond the Law.</b> Ringkasan tiga kasus tentang karhutla, Greenpeace, dan kritik terhadap DPR. Dibuat untuk edukasi.</div></footer>
+
+<script>
+(function(){
+var P=["beranda","kasus","edukasi","quest","solusi"],S=["karhutla","greenpeace","dpr"];
+var Q=[
+{q:"Kabut asap karhutla menutup kotamu berhari-hari. Hak apa yang paling langsung terganggu?",o:[["Hak atas lingkungan hidup yang baik dan sehat (Pasal 28H ayat 1)",1,"Tepat. Udara yang aman dihirup adalah bagian dari lingkungan yang sehat."],["Hak atas harta benda",0,"Kurang tepat. Yang paling langsung terganggu adalah kesehatan dan lingkungan hidup."],["Hak memilih dalam pemilu",0,"Tidak berkaitan langsung dengan kabut asap."]]},
+{q:"Seorang aktivis lingkungan menerima teror setelah mengkritik perusahaan. Langkah paling tepat?",o:[["Diam saja agar tidak memperkeruh",0,"Diam membuat intimidasi berhasil. Ancaman perlu dilaporkan."],["Melaporkan lewat mekanisme pengaduan, dengan dukungan organisasi dan pendamping hukum",1,"Tepat. Laporan perlu diselidiki objektif, dan pembela lingkungan punya perlindungan, termasuk Pasal 66 UU PPLH."],["Membalas dengan ancaman",0,"Membalas ancaman justru melanggar hukum dan melemahkan posisimu."]]},
+{q:"Seseorang mengkritik kebijakan DPR lewat satire di media sosial, lalu dirundung dan diancam. Mana yang benar?",o:[["Satirenya dilindungi sebagai kritik, tetapi ancaman nyata terhadapnya bisa diproses hukum",1,"Tepat. Kritik adalah bagian dari partisipasi demokratis, sedangkan ancaman dan kekerasan tetap melanggar hukum."],["Semua kritik terhadap DPR otomatis pelanggaran hukum",0,"Keliru. Kritik terhadap lembaga negara dilindungi kebebasan berpendapat."],["Perundungan dibenarkan karena kritiknya keras",0,"Keliru. Keras atau tidaknya kritik tidak membenarkan ancaman atau intimidasi."]]}];
+var i=0,sc=0;
+function sim(){var e=document.getElementById("sim");
+if(i>=Q.length){e.innerHTML='<p class="q">Selesai. Skormu '+sc+' dari '+Q.length+'.</p><button class="opt" id="rs">Ulangi simulasi</button>';
+document.getElementById("rs").onclick=function(){i=0;sc=0;sim()};return}
+var x=Q[i],h='<div class="prog">Situasi '+(i+1)+' dari '+Q.length+'</div><p class="q">'+x.q+'</p>';
+x.o.forEach(function(o,k){h+='<button class="opt" data-k="'+k+'">'+o[0]+'</button>'});
+h+='<div class="fb" id="fb"></div><button class="opt" id="nx" style="display:none;margin-top:12px;font-weight:700">Lanjut</button>';
+e.innerHTML=h;
+e.querySelectorAll("[data-k]").forEach(function(b){b.onclick=function(){var o=x.o[b.dataset.k];
+if(o[1])sc++;e.querySelectorAll("[data-k]").forEach(function(c){c.disabled=true;if(x.o[c.dataset.k][1])c.classList.add("ok")});
+if(!o[1])b.classList.add("no");var f=document.getElementById("fb");f.textContent=o[2];f.classList.add("on");
+var n=document.getElementById("nx");n.style.display="block";n.onclick=function(){i++;sim()}}})}
+function quest(){
+var O=["Pasal 28H ayat (1): lingkungan hidup yang baik dan sehat","Pasal 28G ayat (1): perlindungan diri dan rasa aman","Pasal 28E ayat (3): berserikat, berkumpul, berpendapat","Pasal 28D ayat (1): kepastian hukum yang adil"];
+var L=[["Level 1: Penjaga Udara","Lencana Penjaga Udara"],["Level 2: Pelindung Pembela","Lencana Pelindung Pembela"],["Level 3: Penjaga Suara","Lencana Penjaga Suara"]];
+var C=["Karhutla","Karhutla","Intimidasi aktivis","Intimidasi aktivis","Pembungkaman kritik","Pembungkaman kritik"];
+var M=[
+["Warga mengalami gangguan pernapasan akibat asap karhutla yang menyelimuti kota berhari-hari. Pasal mana yang paling langsung berkaitan dengan hak mereka?",0,"Pasal 28H ayat (1) menjamin hak atas lingkungan hidup yang baik dan sehat. Udara yang aman dihirup adalah bagian paling dasar dari hak itu."],
+["Pihak yang diduga bertanggung jawab atas karhutla tak kunjung diproses, sementara warga kecil cepat dihukum. Hak apa yang dipersoalkan?",3,"Pasal 28D ayat (1) menjamin kepastian hukum yang adil dan perlakuan yang sama di hadapan hukum. Penegakan hukum tidak boleh pilih kasih."],
+["Seorang aktivis lingkungan menerima teror dan ancaman setelah mengkritik perusahaan. Pasal mana yang paling langsung relevan?",1,"Pasal 28G ayat (1) melindungi diri pribadi, martabat, dan rasa aman dari ancaman ketakutan. Intimidasi terhadap pembela lingkungan melanggar hak ini."],
+["Aktivis dan warga berkumpul secara damai untuk menuntut pertanggungjawaban atas karhutla. Hak apa yang mereka gunakan?",2,"Pasal 28E ayat (3) menjamin kebebasan berserikat, berkumpul, dan mengeluarkan pendapat. Inilah dasar aksi damai dan pengawasan oleh masyarakat sipil."],
+["Seorang kreator konten mengunggah satire tentang kebijakan DPR. Hak konstitusional mana yang paling relevan?",2,"Pasal 28E ayat (3) melindungi kebebasan mengeluarkan pendapat, termasuk kritik dan satire terhadap kebijakan lembaga negara."],
+["Demonstran damai ditangkap tanpa dasar dan proses yang jelas. Hak apa yang paling dipersoalkan?",3,"Pasal 28D ayat (1) menjamin kepastian hukum yang adil. Penanganan aksi harus berdasarkan legalitas, kebutuhan, proporsionalitas, dan akuntabilitas."]];
+var i=0,sc=0,ok=[0,0,0];
+var e=document.getElementById("qg");
+function draw(){
+if(i>=M.length){fin();return}
+var m=M[i],lv=Math.floor(i/2),h='<div class="qhud"><span>'+L[lv][0]+'</span><span>Misi '+(i+1)+' dari 6</span><span>Skor: '+sc+'</span></div><div class="pbar"><i style="width:'+(i/6*100)+'%"></i></div>';
+h+='<div class="kcase"><span>Kartu kasus: '+C[i]+'</span><p class="q">'+m[0]+'</p></div>';
+O.forEach(function(o,k){h+='<button class="opt" data-k="'+k+'">'+o+'</button>'});
+h+='<div class="fb" id="qf"></div><button class="opt" id="qn" style="display:none;margin-top:12px;font-weight:700"></button>';
+e.innerHTML=h;
+e.querySelectorAll("[data-k]").forEach(function(b){b.onclick=function(){
+var k=+b.dataset.k,m=M[i],lv=Math.floor(i/2),good=k===m[1],t=(good?"Benar! +10 poin. ":"Belum tepat. ")+m[2];
+if(good){sc+=10;ok[lv]++}
+e.querySelectorAll("[data-k]").forEach(function(c){c.disabled=true;if(+c.dataset.k===m[1])c.classList.add("ok")});
+if(!good)b.classList.add("no");
+if(i%2===1)t+=ok[lv]===2?" Lencana diraih: "+L[lv][1]+".":" Lencana level ini belum diraih. Jawab kedua misi dengan benar untuk memperolehnya.";
+var f=document.getElementById("qf");f.textContent=t;f.classList.add("on");
+var n=document.getElementById("qn");n.style.display="block";n.textContent=i===5?"Lihat hasil":"Lanjut ke misi berikutnya";n.onclick=function(){i++;draw()}}})}
+function fin(){
+var rk=sc===60?"Pakar Konstitusi":sc>=40?"Pembela Hak":sc>=20?"Penjaga Pemula":"Calon Pejuang Hak";
+var h='<p class="q">Misi selesai! Skor akhir: '+sc+' dari 60</p><p><b>Peringkat: '+rk+'</b></p><div>';
+L.forEach(function(l,k){h+='<span class="bdg'+(ok[k]===2?'':' off')+'">'+l[1]+(ok[k]===2?'':' (belum diraih)')+'</span>'});
+h+='</div><p>Konstitusi bukan sekadar teks untuk dihafal, melainkan landasan untuk memahami dan melindungi hak warga. Baca lagi <a href="#edukasi"><b>Edukasi hukum</b></a> untuk memperdalam pasal-pasalnya.</p><button class="opt" id="qr" style="font-weight:700">Main lagi</button>';
+e.innerHTML=h;document.getElementById("qr").onclick=function(){i=0;sc=0;ok=[0,0,0];draw()}}
+draw()}
+function tab(n){S.forEach(function(s){var on=s===n;document.getElementById("t-"+s).setAttribute("aria-selected",on);document.getElementById("p-"+s).classList.toggle("on",on)})}
+function route(x){var h=(typeof x==="string"?x:location.hash).replace("#","").split("/"),p=P.indexOf(h[0])>-1?h[0]:"beranda",s=S.indexOf(h[1])>-1?h[1]:"karhutla";
+P.forEach(function(x){document.getElementById(x).classList.toggle("on",x===p)});
+document.querySelectorAll("nav a").forEach(function(a){if(a.getAttribute("href")==="#"+p)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+if(p==="kasus")tab(s);window.scrollTo(0,0)}
+S.forEach(function(s){document.getElementById("t-"+s).onclick=function(){tab(s)}});
+document.addEventListener("click",function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var h=a.getAttribute("href");if(h.length<2)return;e.preventDefault();try{history.replaceState(null,"",h)}catch(_){}route(h)});
+window.addEventListener("hashchange",function(){route()});sim();quest();route();
+})();
+</script>
+</body>
+</html>
